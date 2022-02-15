@@ -29,11 +29,11 @@ def parse_args():
     parser = argparse.ArgumentParser()
     parser.add_argument('-s', '--start-date',
                         help="Date of earliest desired data. "
-                             "Must be in the format YYYY-MM-DD."
+                             "Must be in the format YYYY-MM-DD. "
                              "Default: earliest available")
     parser.add_argument('-e', '--end-date',
                         help="Date of last desired data. "
-                             "Must be in the format YYYY-MM-DD."
+                             "Must be in the format YYYY-MM-DD. "
                              "Default: latest available")
     parser.add_argument('-n', '--num-points', type=int, default=1000,
                         help="Number of points to plot. Default=1000")
