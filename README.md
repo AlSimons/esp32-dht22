@@ -21,7 +21,7 @@ serves the DHT22 data on the /wx endpoint.
 
 To run this program, change the main.py program to be
 ```python
-import weather_server
+import web_server
 ```
   
 ### post_dht22_data_to_database.py:
