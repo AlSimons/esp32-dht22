@@ -1,0 +1,4 @@
+esp32_target/wifi_credentials.py
+.idea
+*.db
+sqlite3_example.py
