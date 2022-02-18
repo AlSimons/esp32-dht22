@@ -19,13 +19,14 @@ There are actually two main programs in here.
 This is not the current program.  This makes the ESP32 into a webserver which
 serves the DHT22 data on the /wx endpoint. 
 
-To run this program, change the main.py program to be
+To run this program, change the main.py program to be (only)
 ```python
 import web_server
 ```
   
 ### post_dht22_data_to_database.py:
-This is the current program. It uses html POST requests to send data to the 
+This is the current program (the program that the current main.py invokes) 
+It uses html POST requests to send data to the 
 web server contained in weather_server.py, in the main directory of this 
 repo.  It is currently configured to return Fahrenheit; to use Celsius
 change the line:
@@ -68,8 +69,3 @@ Default: latest available date.
 * --num-points: Number of points to plot. Default=1000. With large databases
 this can greatly speed up drawing the plots by only using a subset of the 
 data.
-
-NOTE: I have not yet gotten this to run on the Raspberry Pi. Installing 
-matplotlib requires libcblas.so, for which I have not yet found a repository
-from which to apt install it.  It is my intent to eventually make this run on 
-the Pi too.
