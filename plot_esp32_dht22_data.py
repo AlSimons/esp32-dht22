@@ -6,11 +6,6 @@ The data path this is intended to be used with is:
  - post_dht22_data_to_database.py
  - weather_server.py
  - this program
-
-Currently only runs on a Windows machine (and, I suppose, a Mac). Specifically,
-it doesn't run on the Raspberry Pi, until I can figure out how to install
-libcblas,so.  The recommended package libcblas-dev has no installation
-candidate.
 """
 
 #
