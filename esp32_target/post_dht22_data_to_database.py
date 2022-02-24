@@ -8,6 +8,7 @@ import json
 import urequests
 import wifi_connect
 from read_dht22 import read_dht22
+import machine
 import mytime
 import ntptime
 from time import sleep
@@ -36,15 +37,25 @@ def format_time():
 
 def main():
     ip_address = wifi_connect.connect()
-    print(ip_address)
+    print("**", ip_address)
     set_rtc()
+
+    # This does not need to be in a loop, because waking from deepsleep() restarts
+    # the program from scratch
+
+    data = read_dht22(c=False, upper=False)
+
+    data['date_time'] = format_time()
+    json_data = json.dumps(data)
+
+    response = urequests.post(database_server_url, data=json_data)
+
+    print("""
+Sleeping for 30 seconds to allow you load a different program (e.g., a different main.py).
+After that we will be in deep sleep for 150 seconds (total cycle time 3 min). During
+deep sleep you will not be able to access the system.""")
+    sleep(30)  # 30 seconds
+    print("Going to deep sleep now")
     
-    while 1:
-        data = read_dht22(c=False, upper=False)
-        
-        data['date_time'] = format_time()
-        json_data = json.dumps(data)
-              
-        response = urequests.post(database_server_url, data=json_data)
-        print(response.text)
-        sleep(180)  # 3 minutes
+    machine.deepsleep(150 * 1000)  # deepsleep() takes milliseconds
+    print("This will never be printed.")
